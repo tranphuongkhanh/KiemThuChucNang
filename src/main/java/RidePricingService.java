@@ -1,5 +1,3 @@
-package main;
-
 public class RidePricingService {
     public static final double MOTORBIKE_BASE_FARE   = 13_000;
     public static final double MOTORBIKE_PER_KM      = 4_000;
@@ -11,17 +9,14 @@ public class RidePricingService {
     public static final double MIN_DISTANCE          = 0.0;
     public static final double MAX_DISTANCE          = 1000.0;
 
-    public double calculatePrice(int vehicleType, double distance,
-                                 boolean peakHour, boolean badWeather) {
+    public static double calculatePrice(float vehicleType,float distance, boolean peakHour) {
 
         // --- Kiểm tra hợp lệ ---
         if (vehicleType < 1 || vehicleType > 2) {
-            throw new IllegalArgumentException(
-                    "Loại xe không hợp lệ.");
+            return -1;
         }
         if (distance < MIN_DISTANCE || distance > MAX_DISTANCE) {
-            throw new IllegalArgumentException(
-                    "Quãng đường không hợp lệ.");
+            return -1;
         }
 
         // --- Tính giá cơ bản ---
@@ -41,7 +36,7 @@ public class RidePricingService {
             price += (distance - BASE_DISTANCE) * perKmFare;
         }
 
-        if (peakHour || badWeather) {
+        if (peakHour) {
             price *= SURGE_MULTIPLIER;
         }
 
