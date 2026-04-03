@@ -23,7 +23,7 @@ public class RidePricingService {
         double baseFare;
         double perKmFare;
 
-        if (vehicleType < 2 && vehicleType >= 1) {
+        if (vehicleType < 2) {
             baseFare  = MOTORBIKE_BASE_FARE;
             perKmFare = MOTORBIKE_PER_KM;
         } else {
